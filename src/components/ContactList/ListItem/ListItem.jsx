@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-export default function ListItem({ contact, onDeleteClick }) {
+export const ListItem = ({ contact, onDeleteClick }) => {
   const { id, name, number } = contact;
   return (
     <>
@@ -14,7 +14,7 @@ export default function ListItem({ contact, onDeleteClick }) {
       </li>
     </>
   );
-}
+};
 
 ListItem.propTypes = {
   contact: PropTypes.exact({

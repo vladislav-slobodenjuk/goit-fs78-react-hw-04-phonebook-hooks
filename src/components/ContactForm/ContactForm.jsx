@@ -16,17 +16,24 @@ export default class ContactForm extends Component {
     this.setState({ [target.name]: target.value });
   };
 
-  render() {
-    const { name, number } = this.state;
+  handleSubmit = e => {
+    e.preventDefault();
+
     const { onHandleSubmit } = this.props;
 
+    const name = e.target.name.value.trim();
+    const number = e.target.number.value.trim();
+
+    onHandleSubmit({ name, number });
+    this.setState({ name: '', number: '' });
+  };
+
+  render() {
+    const { name, number } = this.state;
+    // const { onHandleSubmit } = this.props;
+
     return (
-      <StyledForm
-        onSubmit={e => {
-          onHandleSubmit(e);
-          this.setState({ name: '', number: '' });
-        }}
-      >
+      <StyledForm onSubmit={this.handleSubmit}>
         <label>
           Name:
           <input
