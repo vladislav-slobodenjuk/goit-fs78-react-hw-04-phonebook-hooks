@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Container } from './App.styled';
@@ -19,7 +19,7 @@ const initContacts = [
 // localStorage.setItem(STORAGE_KEY, JSON.stringify(initContacts));
 
 export const App = () => {
-  const [contacts, setContacts] = useState([...initContacts]);
+  const [contacts, setContacts] = useState(initContacts);
   const [filter, setFilter] = useState('');
 
   const handleFilterChange = ({ target }) => {
@@ -46,6 +46,19 @@ export const App = () => {
     setContacts(restContacts);
   };
 
+  useEffect(() => {
+    const savedContacts = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    // console.log('savedContacts', savedContacts);
+    // console.log('first');
+
+    if (savedContacts) setContacts(savedContacts);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
+    // console.log('second');
+  }, [contacts]);
+
   // componentDidMount() {
   //   const savedContacts = JSON.parse(localStorage.getItem(STORAGE_KEY));
   //   if (savedContacts) this.setState({ contacts: savedContacts });
@@ -66,7 +79,6 @@ export const App = () => {
 
       <h2>Contacts</h2>
       <Filter filterValue={filter} onFilterChange={handleFilterChange} />
-
       <ContactList contacts={filteredContacts} onDeleteClick={deleteContact} />
     </Container>
   );
