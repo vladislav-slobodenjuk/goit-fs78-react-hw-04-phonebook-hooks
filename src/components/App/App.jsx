@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { nanoid } from 'nanoid';
 
 import { Container } from './App.styled';
-import ContactForm from '../ContactForm/ContactForm';
+import { ContactForm } from '../ContactForm/ContactForm';
 import { ContactList } from '../ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
 
@@ -57,7 +57,6 @@ export const App = () => {
   //   }
   // }
 
-  // const { filter } = this.state;
   const filteredContacts = filterContacts();
 
   return (
