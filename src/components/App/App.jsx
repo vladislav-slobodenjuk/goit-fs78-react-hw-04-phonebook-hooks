@@ -49,8 +49,6 @@ export const App = () => {
   useEffect(() => {
     const savedContacts = JSON.parse(localStorage.getItem(STORAGE_KEY));
     // console.log('savedContacts', savedContacts);
-    // console.log('first');
-
     if (savedContacts) setContacts(savedContacts);
   }, []);
 
@@ -58,17 +56,6 @@ export const App = () => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(contacts));
     // console.log('second');
   }, [contacts]);
-
-  // componentDidMount() {
-  //   const savedContacts = JSON.parse(localStorage.getItem(STORAGE_KEY));
-  //   if (savedContacts) this.setState({ contacts: savedContacts });
-  // }
-
-  // componentDidUpdate(_prevProps, prevState) {
-  //   if (prevState.contacts.length !== this.state.contacts.length) {
-  //     localStorage.setItem(STORAGE_KEY, JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   const filteredContacts = filterContacts();
 
